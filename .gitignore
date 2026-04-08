@@ -1,0 +1,70 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+Bin/
+Obj/
+
+# Visual Studio cache folders
+.vs/
+*.vscode/
+*.user
+*.userosscache
+*.suo
+*.cache/
+*.dbmdl
+
+# IIS Express
+/IISExpress/
+/applicationhost.config
+
+# NuGet packages
+*.nupkg
+packages/
+!packages/repositories.config
+
+# Backup and logs
+*.log
+*.bak
+*.Backup
+*.tmp
+
+# Resharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+
+# JetBrains Rider
+.idea/
+
+# Web Essentials cache
+*.wepkg
+*.wepkey
+
+# Publish output
+publish/
+wwwroot/
+
+# SQL localdb
+*.mdf
+*.ldf
+
+# Windows thumbnails
+Thumbs.db
+ehthumbs.db
+
+# Mac junk
+.DS_Store
+
+# Temp ASP.NET files
+Temporary ASP.NET Files/
+
+# Test Results
+TestResults/
+
+# Entity Framework Migrations backups
+*Migrations/*.Designer.cs
+*Migrations/*.resx

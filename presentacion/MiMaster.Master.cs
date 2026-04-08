@@ -1,0 +1,102 @@
+﻿using Dominio;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Negocio;
+
+namespace presentacion
+{
+    public partial class MiMaster : System.Web.UI.MasterPage
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //Oculto NavBar en LogIn.aspx
+            string currentPage = System.IO.Path.GetFileName(Request.Path);
+
+            if (currentPage.Equals("LogIn.aspx", StringComparison.OrdinalIgnoreCase) || currentPage.Equals("Registro.aspx", StringComparison.OrdinalIgnoreCase) || currentPage.Equals("Error.aspx", StringComparison.OrdinalIgnoreCase) || currentPage.Equals("OlvideContraseña.aspx", StringComparison.OrdinalIgnoreCase))
+            {
+                pnlNavbar.Visible = false;
+            }
+
+            if (Seguridad.sessionActiva(Session["usuario"]))
+            {
+                //lnkLogin.Visible = false;
+                btnSalir.Visible = true;
+
+                if (Seguridad.esAdmin(Session["usuario"]))
+                {
+                    lnkMenu.Visible = true;
+                    lnkMenuPacientes.Visible = false;
+
+                    liAdmin.Visible = true;
+                    lnkGestionMedicos.Visible = true;
+                    lnkGestionPaciente.Visible = true;
+                    lnkGestionObraSocial.Visible = true;
+                    lnkEspecialidades.Visible = true;
+
+                    liTurnos.Visible = false;
+                    lnkGestionTurnos.Visible = true;
+
+                    lnkAdmin.Visible = true;
+
+                    
+                    lnkMisTurnos.Visible = false;
+                    lnkPedirTurno.Visible = false;
+
+                }
+                else if (Seguridad.esMedico(Session["usuario"]))
+                {
+
+                    lnkMenu.Visible = true;
+                    lnkMenuPacientes.Visible = false;
+
+                    liAdmin.Visible= false;
+
+                    liTurnos.Visible = false;
+                    lnkGestionTurnos.Visible = false;
+
+                    lnkPanelMedico.Visible = true;
+
+                    lnkMisTurnos.Visible = false;
+                    lnkPedirTurno.Visible = false;
+
+                    lnkSobreNosotros.Visible = false;
+                }
+                else if (Seguridad.esPaciente(Session["usuario"]))
+                {
+                    lnkMenu.Visible = true;
+                    lnkMenuPacientes.Visible = true;
+                    lnkPerfil.Visible = true;
+                    liAdmin.Visible = false;
+
+                    liTurnos.Visible = false;
+                    lnkGestionTurnos.Visible = false;
+                    lnkEspecialidades.Visible = true;
+
+                    lnkMisTurnos.Visible = true;
+                    lnkPedirTurno.Visible = true;
+
+                    lnkSobreNosotros.Visible = true;
+                }
+                else
+                {
+                    liAdmin.Visible = false;
+                    liTurnos.Visible = false;
+                    btnSalir.Visible = false;
+                    lnkMenu.Visible = false;
+                    lnkMenuPacientes.Visible = false;
+                }
+            }
+        }
+
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("Login.aspx", false);
+        }
+    }
+
+}

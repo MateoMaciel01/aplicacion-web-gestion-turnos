@@ -1,0 +1,104 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MiMaster.master.cs" Inherits="presentacion.MiMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Mi Web</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <link href="css/misEstilos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <!-- NAVBAR GENERAL -->
+        <asp:Panel ID="pnlNavbar" runat="server">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/Menu.aspx">Clinica Medica</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav me-auto">
+
+                            <asp:HyperLink ID="lnkMenu" runat="server" CssClass="nav-link active" NavigateUrl="~/Menu.aspx">Inicio</asp:HyperLink>
+
+                            <li class="nav-item dropdown" id="liAdmin" runat="server" visible="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Administracion</a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <asp:HyperLink ID="lnkAdmin" runat="server" CssClass="dropdown-item" NavigateUrl="~/GestionAdmin.aspx" Visible="false">Gestion de Administrador</asp:HyperLink></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="lnkGestionTurnos" runat="server" CssClass="dropdown-item" NavigateUrl="~/Turnos.aspx" Visible="false">Gestion de Turnos</asp:HyperLink></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="lnkGestionPaciente" runat="server" CssClass="dropdown-item" NavigateUrl="~/GestionPaciente.aspx" Visible="false">Gestion de Pacientes</asp:HyperLink></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="lnkGestionMedicos" runat="server" CssClass="dropdown-item" NavigateUrl="~/GestionMedicos.aspx" Visible="false">Gestion de Medicos</asp:HyperLink></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="lnkGestionObraSocial" runat="server" CssClass="dropdown-item" NavigateUrl="~/GestionCobertura.aspx" Visible="false">Gestion ObraSocial</asp:HyperLink></li>
+                                    
+                                </ul>
+                            </li>
+
+
+                            <li class="nav-item dropdown" id="liTurnos" runat="server" visible="false">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Turnos</a>
+                                <ul class="dropdown-menu">
+
+                                    <li>
+                                        <asp:HyperLink ID="lnkMisTurnos" runat="server" CssClass="dropdown-item" NavigateUrl="~/TurnoPaciente.aspx" Visible="false">Mis Turnos</asp:HyperLink></li>
+                                    <li>
+                                        <hr class="dropdown-divider" />
+                                    </li>
+                                    <li>
+                                        <asp:HyperLink ID="lnkPedirTurno" runat="server" CssClass="dropdown-item" NavigateUrl="~/PedirTurno.aspx" Visible="false">Solicitar Turno</asp:HyperLink></li>
+                                </ul>
+                            </li>
+
+                            <asp:HyperLink ID="lnkPanelMedico" runat="server" CssClass="nav-link" NavigateUrl="~/PanelMedico.aspx" Visible="false">Panel Medico</asp:HyperLink>
+                            <asp:HyperLink ID="lnkMenuPacientes" runat="server" CssClass="nav-link" NavigateUrl="~/MenuPaciente.aspx" Visible="false">Turnos</asp:HyperLink>
+                            <asp:HyperLink ID="lnkEspecialidades" runat="server" CssClass="nav-link" NavigateUrl="~/Especialidades.aspx" Visible="false">Especialidades</asp:HyperLink>
+                            <asp:HyperLink ID="lnkSobreNosotros" runat="server" CssClass="nav-link" NavigateUrl="~/SobreNosotros.aspx" Visible="false">Sobre Nosotros</asp:HyperLink>
+                            <asp:HyperLink ID="lnkPerfil" runat="server" CssClass="nav-link" NavigateUrl="~/Perfil.aspx" Visible="false">Perfil</asp:HyperLink>
+
+
+                        </div>
+                        <div class="navbar-nav ms-auto">
+                            <asp:LinkButton ID="btnSalir" runat="server" CssClass="nav-link" OnClick="btnSalir_Click" Visible="false">Salir</asp:LinkButton>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </asp:Panel>
+
+        <!-- Contenido de  las paginas-->
+        <div class="container mt-4">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+        </div>
+
+    </form>
+</body>
+
+</html>
