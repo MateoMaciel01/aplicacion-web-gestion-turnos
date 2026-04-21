@@ -63,3 +63,8 @@ git clone https://github.com/MateoMaciel01/aplicacion-web-gestion-turnos.git
 ## 📌 Estado del proyecto
 
 Proyecto académico finalizado.
+
+---
+## 👨‍💻 Autor
+
+Mateo Maciel
