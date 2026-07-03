@@ -19,12 +19,12 @@ GO
 
 
 CREATE TABLE Rol (
-    IdRol INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     Descripcion NVARCHAR(50) NOT NULL
 );
 
 CREATE TABLE Usuario (
-    IdUsuario INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     NombreUsuario NVARCHAR(50) NOT NULL,
     Clave NVARCHAR(100) NOT NULL,
     Activo BIT DEFAULT 1,
@@ -40,29 +40,36 @@ CREATE TABLE Cobertura (
 );
 
 CREATE TABLE Paciente (
-    IdPaciente INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     Nombre NVARCHAR(100) NOT NULL,
     Apellido NVARCHAR(100) NOT NULL,
     Dni NVARCHAR(20) NOT NULL,
     Email NVARCHAR(100),
     Telefono NVARCHAR(30),
     IdCobertura INT NOT NULL,
-    FOREIGN KEY (IdCobertura) REFERENCES Cobertura(Id)
+    IdUsuario INT NULL,
+
+    FOREIGN KEY (IdCobertura) REFERENCES Cobertura(Id),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
 CREATE TABLE Especialidad (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    Descripcion NVARCHAR(100) NOT NULL
+    Descripcion NVARCHAR(100) NOT NULL,
+    Imagen NVARCHAR(500) NULL
+    
 );
 
 CREATE TABLE Medico (
     Id INT IDENTITY(1,1) PRIMARY KEY,
+    IdUsuario INT NULL,
     Nombre NVARCHAR(100) NOT NULL,
     Apellido NVARCHAR(100) NOT NULL,
     Matricula NVARCHAR(50),
     Email NVARCHAR(100),
     Telefono NVARCHAR(30),
-    IdUsuario INT NULL,
+    Activo BIT NOT NULL DEFAULT 1,
+
     FOREIGN KEY (IdUsuario) REFERENCES Usuario(Id)
 );
 
@@ -75,12 +82,13 @@ CREATE TABLE MedicoEspecialidad (
 );
 
 CREATE TABLE EstadoTurno (
-    IdEstadoTurno INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     Descripcion NVARCHAR(50) NOT NULL
+    
 );
 
 CREATE TABLE TurnoTrabajo (
-    IdTurnoTrabajo INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     IdMedico INT NOT NULL,
     DiaSemana NVARCHAR(20) NOT NULL,
     HoraInicio TIME NOT NULL,
@@ -89,7 +97,7 @@ CREATE TABLE TurnoTrabajo (
 );
 
 CREATE TABLE Turno (
-    IdTurno INT IDENTITY(1,1) PRIMARY KEY,
+    Id INT IDENTITY(1,1) PRIMARY KEY,
     IdPaciente INT NOT NULL,
     IdMedico INT NOT NULL,
     IdEspecialidad INT NOT NULL,
@@ -97,6 +105,7 @@ CREATE TABLE Turno (
     Hora TIME NOT NULL,
     Observaciones NVARCHAR(300),
     IdEstadoTurno INT NOT NULL,
+
     FOREIGN KEY (IdPaciente) REFERENCES Paciente(Id),
     FOREIGN KEY (IdMedico) REFERENCES Medico(Id),
     FOREIGN KEY (IdEspecialidad) REFERENCES Especialidad(Id),
@@ -114,7 +123,7 @@ INSERT INTO EstadoTurno (Descripcion) VALUES
 ('Nuevo'),
 ('Reprogramado'),
 ('Cancelado'),
-('No Asistió'),
+('No AsistiÃ³'),
 ('Cerrado');
 
 INSERT INTO Cobertura (Tipo, NombreObraSocial, PlanCobertura) VALUES 
@@ -122,8 +131,8 @@ INSERT INTO Cobertura (Tipo, NombreObraSocial, PlanCobertura) VALUES
 ('Obra Social', 'OSDE', '210'),
 ('Obra Social', 'Swiss Medical', 'SMG 50');
 
-INSERT INTO Especialidad (Nombre, Descripcion) VALUES 
-('Clínica Médica', 'Atención integral de pacientes adultos y niños para diagnósticos y tratamientos generales.'),
-('Odontología', 'Cuidado y tratamiento de dientes, encías y salud bucal en general.'),
-('Dermatología', 'Diagnóstico y tratamiento de enfermedades de la piel, cabello y uñas.'),
-('Cardiología', 'Prevención, diagnóstico y tratamiento de enfermedades del corazón y sistema circulatorio.');
+INSERT INTO Especialidad (Descripcion,Imagen) VALUES 
+('ClÃ­nica MÃ©dica',NULL),
+('OdontologÃ­a', NULL),
+('DermatologÃ­a',NULL),
+('CardiologÃ­a',NULL);
