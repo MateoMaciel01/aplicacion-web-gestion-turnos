@@ -14,7 +14,7 @@ namespace presentacion
                 Session.Add("error", "No tienes permisos para esta página.");
                 Response.Redirect("Menu.aspx", false);
                 return;
-            }
+            
 
         }
     }
