@@ -275,8 +275,37 @@ namespace presentacion
                 string nombrePaciente = paciente.Nombre;
                 string medicoNombre = ddlMedico.SelectedItem.Text;
 
-                EmailService emailService = new EmailService();
-                emailService.EnviarConfirmacionTurno(emailDestino, nombrePaciente, fecha, medicoNombre);
+                /*EmailService emailService = new EmailService();
+                emailService.EnviarConfirmacionTurno(emailDestino, nombrePaciente, fecha, medicoNombre);*/
+
+                if (chkEnviarCorreo.Checked)
+                {
+                    try
+                    {
+
+                        EmailService emailService = new EmailService();
+
+                        emailService.EnviarConfirmacionTurno(
+                            emailDestino,
+                            nombrePaciente,
+                            fecha,
+                            medicoNombre);
+
+                        divExito.InnerText = "Turno registrado correctamente. Se envió la confirmación por correo.";
+                    }
+                    catch
+                    {
+                        divExito.InnerText = "Turno registrado correctamente, pero no fue posible enviar el correo de confirmación.";
+                    }
+                }
+                else
+                {
+                    divExito.InnerText = "Turno registrado correctamente.";
+                }
+
+                
+
+                
 
                 divExito.Visible = true;
                 ScriptManager.RegisterStartupScript(this, GetType(), "redir",
@@ -284,15 +313,17 @@ namespace presentacion
 
 
             }
-            catch (SmtpException smtpEx)
+            /*catch (SmtpException smtpEx)
             {
                 lblError.Text = "Error al enviar el correo: " + smtpEx.Message;
                 lblError.Visible = true;
-            }
+            }*/
+            
             catch (Exception ex)
             {
                 MostrarError("Error: " + ex.Message);
             }
+
         }
 
 

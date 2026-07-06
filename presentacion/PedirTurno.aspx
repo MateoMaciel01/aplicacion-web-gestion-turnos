@@ -95,6 +95,12 @@
             <asp:Label ID="lblError" runat="server" ForeColor="Red" Visible="false"></asp:Label>
         </div>
 
+        <asp:CheckBox
+            ID="chkEnviarCorreo"
+            runat="server"
+            Text="Deseo recibir la confirmación del turno por correo electrónico"
+            Checked="true" />
+
         <!-- Confirmar -->
         <div class="text-center mt-4">
             <asp:Button ID="btnConfirmar" runat="server" CssClass="btn btn-primary px-4" Text="Confirmar turno" OnClick="btnConfirmar_Click" />
