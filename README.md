@@ -1,4 +1,4 @@
-## 🏥 Aplicación Web de Gestión de Turnos - Clínica
+## 🏥 Sistema de Gestion Medica - Clínica
 
 Sistema web desarrollado para la gestión integral de una clínica médica, permitiendo administrar turnos, especialidades y usuarios mediante distintos roles.
 
